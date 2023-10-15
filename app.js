@@ -1,14 +1,22 @@
 const express = require("express");
+require("dotenv").config();
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-mongoose.connect("mongodb://localhost/student_register_db", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useCreateIndex: true,
-});
+//
+// mongodb+srv://<username>:<password>@cluster0.nmv0r0r.mongodb.net/
+// mongodb+srv://<username>:<password>@cluster0.nmv0r0r.mongodb.net/
+// mongoose.connect("mongodb://localhost/student_register_db", {
+mongoose.connect(
+  `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.nmv0r0r.mongodb.net/`,
+  {
+    //   useNewUrlParser: true,
+    //   useUnifiedTopology: true,
+    //   useCreateIndex: true,
+  }
+);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
